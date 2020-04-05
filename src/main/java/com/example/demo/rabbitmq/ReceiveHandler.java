@@ -26,7 +26,6 @@ public class ReceiveHandler {
      * exchange：队列所绑定的交换机，值是@Exchange类型
      * key：队列和交换机绑定的RoutingKey，可指定多个
      */
-
     // 绑定队列到交换机，同时指定需要订阅的routing key。订阅所有的email
     //监听邮件队列
     @RabbitListener(bindings = @QueueBinding(

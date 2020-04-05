@@ -1,0 +1,28 @@
+server:
+  port: 10086
+spring:
+  application:
+    name: mq-rabbitmq-consumer
+  rabbitmq:
+    host: 192.168.0.31
+    port: 5672
+    username: candy
+    password: 1234
+    virtualHost: VHOST
+    template:
+      retry:
+        enabled: true
+        initial-interval: 10000ms
+        max-interval: 300000ms
+        multiplier: 2
+      exchange: topic.exchange
+    publisher-confirms: true
+
+    #template：有关AmqpTemplate的配置
+    #retry：失败重试
+    #enabled：开启失败重试
+    #initial-interval：第一次重试的间隔时长
+    #max-interval：最长重试间隔，超过这个间隔将不再重试
+    #multiplier：下次重试间隔的倍数，此处是2即下次重试间隔是上次的2倍
+    #exchange：缺省的交换机名称，此处配置后，发送消息如果不指定交换机就会使用这个
+    #publisher-confirms：生产者确认机制，确保消息会正确发送，如果发送失败会有错误回执，从而触发重试
